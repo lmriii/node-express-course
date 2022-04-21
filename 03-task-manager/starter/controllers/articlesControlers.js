@@ -1,21 +1,50 @@
-const getAllArticles = (req, res, next) => {
-    res.send('all items from the new file');
+// getting mongoose schema for our db
+const Article = require('../models/articles');
+
+const getAllArticles = async (req, res, next) => {
+    try {
+        const articles = await Article.find({});
+        res.status(200).json({ articles });
+    } catch (error) {
+        res.status(500).json({ msg: error })
+    }
 };
 
-const createArticle = (req, res, next) => {
-    res.json(req.body);
+const createArticle = async (req, res, next) => {
+    try {
+        const article = await Article.create(req.body);
+        res.status(201).json({ article });
+    } catch (error) {
+        res.status(500).json({ message: error })
+    }
 };
 
-const getArticle = (req, res, next) => {
-    res.json({ id: req.params.id });
+const getArticle = async (req, res, next) => {
+    try {
+        const { id: articleID } = req.params;
+        const article = await Article.findOne({ _id: articleID });
+        if (!article) {
+            return res.status(404).json({ message: `No task with ID ${articleID} found` });
+        }
+        res.status(200).json({ article });
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
+    
 };
-
+ 
 const updateArticle = (req, res, next) => {
     res.send('update article');
 };
 
-const deleteArticle = (req, res, next) => {
-    res.send('delete article');
+const deleteArticle = async (req, res, next) => {
+    try {
+        const {id: articleID} = req.params;
+        const article = await Article.findOne({_id: articleID});
+    } catch (error) {
+        
+    }
+    
 };
 
 module.exports = {
