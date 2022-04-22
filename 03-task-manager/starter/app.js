@@ -8,7 +8,7 @@ require('dotenv').config();
 
 
 // middleware
-
+app.use(express.static('./public'))
 app.use(express.json());
 
 
@@ -16,10 +16,6 @@ app.use(express.json());
 
 app.use('/api/v1/articles', articles);
 
-
-app.get('/hello', (req, res, next) => {
-    res.send('Task Manager and App');
-})
 
 const port = 4000;
 

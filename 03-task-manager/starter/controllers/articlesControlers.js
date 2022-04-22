@@ -24,7 +24,7 @@ const getArticle = async (req, res, next) => {
         const { id: articleID } = req.params;
         const article = await Article.findOne({ _id: articleID });
         if (!article) {
-            return res.status(404).json({ message: `No task with ID ${articleID} found` });
+            return res.status(404).json({ message: `No article with ID ${articleID} found` });
         }
         res.status(200).json({ article });
     } catch (error) {
@@ -33,19 +33,43 @@ const getArticle = async (req, res, next) => {
     
 };
  
-const updateArticle = (req, res, next) => {
-    res.send('update article');
-};
+
 
 const deleteArticle = async (req, res, next) => {
     try {
         const {id: articleID} = req.params;
-        const article = await Article.findOne({_id: articleID});
+        const article = await Article.findOneAndDelete({_id: articleID});
+        if(!article){
+            return res.status(404).json({ message: `No article with ID ${articleID} found.`});
+        }
+        res.status(200).json({article});
     } catch (error) {
-        
+        res.status(500).json({message: error});
     }
     
 };
+
+const updateArticle = async (req, res, next) => {
+    try {
+        const {id: articleID} = req.params;
+
+        const article = await Article.findOneAndUpdate({_id:articleID}, req.body, {
+            new:true, 
+            runValidators: true
+        });
+
+        if(!article){
+            return res.status(404).json({message: `No article with ID ${articleID} found.`})
+        }
+
+
+        res.status(200).json({id:articleID, data: req.body})
+    } catch (error) {
+        res.status(500).json({message: error})    
+    }
+    
+};
+
 
 module.exports = {
     getAllArticles,
