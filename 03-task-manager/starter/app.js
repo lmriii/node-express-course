@@ -16,7 +16,6 @@ app.use(express.json());
 
 app.use('/api/v1/articles', articles);
 
-
 const port = 4000;
 
 const start = async () => {
