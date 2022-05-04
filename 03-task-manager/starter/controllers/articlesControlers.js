@@ -31,24 +31,24 @@ const getArticle = async (req, res, next) => {
         res.status(500).json({ message: error });
     }
 
-}; 
+};
 
 const updateArticle = async (req, res, next) => {
     try {
-        const {id: articleID} = req.params;
-        const article = await Article.findOneAndUpdate({_id: articleID}, req.body, {
+        const { id: articleID } = req.params;
+        const article = await Article.findOneAndUpdate({ _id: articleID }, req.body, {
             new: true,
             runValidators: true,
         });
-        if(!article){
-            return res.status(404).json({message: `No article with ID of ${articleID} found`});
+        if (!article) {
+            return res.status(404).json({ message: `No article with ID of ${articleID} found` });
         }
-        res.status(200).json({article});
+        res.status(200).json({ article });
     } catch (error) {
-        
+
     }
 
-    
+
 };
 
 const deleteArticle = async (req, res, next) => {
@@ -56,14 +56,16 @@ const deleteArticle = async (req, res, next) => {
         const { id: articleID } = req.params;
         const article = await Article.findOneAndDelete({ _id: articleID });
         if (!article) {
-            return res.status(404).json({message:`No article with ID of ${article} found`});
+            return res.status(404).json({ message: `No article with ID of ${article} found` });
         }
-        res.status(200).json({message: `Successfully deleted`});
+        res.status(200).json({ message: `Successfully deleted` });
     } catch (error) {
 
     }
 
 };
+
+
 
 module.exports = {
     getAllArticles,
