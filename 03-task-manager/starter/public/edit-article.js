@@ -1,6 +1,7 @@
 const articleIDDOM = document.querySelector('.article-edit-id')
 const articleNameDOM = document.querySelector('.article-edit-name')
-const articleCompletedDOM = document.querySelector('.article-edit-completed')
+const articleContentDOM = document.querySelector('.article-edit-content')
+const articlePublishedDOM = document.querySelector('.article-edit-published')
 const editFormDOM = document.querySelector('.single-article-form')
 const editBtnDOM = document.querySelector('.article-edit-btn')
 const formAlertDOM = document.querySelector('.form-alert')
@@ -13,13 +14,14 @@ const showArticle = async () => {
     const {
       data: { article },
     } = await axios.get(`/api/v1/articles/${id}`)
-    const { _id: articleID, completed, title } = article
+    const { _id: articleID, published, title, content } = article
 
     articleIDDOM.textContent = articleID
     articleNameDOM.value = title
+    articleContentDOM = content
     tempName = title
-    if (completed) {
-      articleCompletedDOM.checked = true
+    if (published) {
+      articlePublishedDOM.checked = true
     }
   } catch (error) {
     console.log(error)
@@ -33,22 +35,25 @@ editFormDOM.addEventListener('submit', async (e) => {
   e.preventDefault()
   try {
     const articleName = articleNameDOM.value
-    const articleCompleted = articleCompletedDOM.checked
+    const articlePublished = articlePublishedDOM.checked
+    const articleContent = articleContentDOM.value
 
     const {
       data: { article },
     } = await axios.patch(`/api/v1/articles/${id}`, {
       title: articleName,
-      completed: articleCompleted,
+      published: articlePublished,
+      content: articleContent,
     })
 
-    const { _id: articleID, completed, title } = article
+    const { _id: articleID, published, title, content } = article
 
     articleIDDOM.textContent = articleID
     articleNameDOM.value = title
+    articleContentDOM.value = content
     tempName = title
-    if (completed) {
-      articleCompletedDOM.checked = true
+    if (published) {
+      articlePublishedDOM.checked = true
     }
     formAlertDOM.style.display = 'block'
     formAlertDOM.textContent = `success, edited article`

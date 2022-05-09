@@ -368,10 +368,10 @@ form > :last-child {
   color: var(--green-dark);
   visibility: hidden;
 }
-.article-completed h5 {
+.article-published h5 {
   text-decoration: line-through;
 }
-.article-completed .fa-check-circle {
+.article-published .fa-check-circle {
   visibility: visible;
 }
 .loading-text {
@@ -424,9 +424,15 @@ form > :last-child {
   font-size: 1rem;
 }
 
-.article-edit-completed {
+.article-edit-published {
   width: auto;
 }
+
+.article-edit-content {
+  width: 80%;
+  height: 75px;
+}
+
 .back-link {
   display: block;
   width: 250px;

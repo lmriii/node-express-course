@@ -6,11 +6,17 @@ const ArticleSchema = new mongoose.Schema({
         type: String,
         required: [true, 'must provide a title'],
         trim: true,
-        maxlength: [30, 'title must be 30 characters or less']
+        maxlength: [50, 'title must be 50 characters or less']
     },
     published: {
         type: Boolean,
         default: false
+    },
+    content: {
+        type: String,
+        required: [true, 'please provide content'],
+        trim: true,
+
     }
 }); 
 

@@ -1,7 +1,8 @@
 const articlesDOM = document.querySelector('.articles')
 const loadingDOM = document.querySelector('.loading-text')
 const formDOM = document.querySelector('.article-form')
-const articleInputDOM = document.querySelector('.article-input')
+const articleTitleInputDOM = document.querySelector('.article-input-title')
+const articleContentInputDOM = document.querySelector('.article-input-content')
 const formAlertDOM = document.querySelector('.form-alert')
 // Load articles from /api/articles
 const showArticles = async () => {
@@ -17,15 +18,15 @@ const showArticles = async () => {
     }
     const allArticles = articles
       .map((article) => {
-        const { completed, _id: articleID, title } = article
-        return `<div class="single-article ${completed && 'article-completed'}">
-<h5><span><i class="far fa-check-circle"></i></span>${title}</h5>
+        const { published, _id: articleID, title, content } = article
+        return `<div class="single-article ${published && 'article-published'}">
+<h5><span><i class="far fa-check-circle"></i></span>${title}</h5><p>${content}</p>
 <div class="article-links">
 
 
 
 <!-- edit link -->
-<a href="article.html?id=${articleID}"  class="edit-link">
+<a href="edit-article.html?id=${articleID}"  class="edit-link">
 <i class="fas fa-edit"></i>
 </a>
 <!-- delete btn -->
@@ -67,12 +68,14 @@ articlesDOM.addEventListener('click', async (e) => {
 
 formDOM.addEventListener('submit', async (e) => {
   e.preventDefault()
-  const title = articleInputDOM.value
+  const title = articleTitleInputDOM.value;
+  const content = articleContentInputDOM.value;
 
   try {
-    await axios.post('/api/v1/articles', { title })
+    await axios.post('/api/v1/articles', { title, content })
     showArticles()
     articleInputDOM.value = ''
+    articleContentDOM.value = ''
     formAlertDOM.style.display = 'block'
     formAlertDOM.textContent = `success, article added`
     formAlertDOM.classList.add('text-success')
