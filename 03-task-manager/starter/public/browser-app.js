@@ -20,7 +20,7 @@ const showArticles = async () => {
       .map((article) => {
         const { published, _id: articleID, title, content } = article
         return `<div class="single-article ${published && 'article-published'}">
-<h5><span><i class="far fa-check-circle"></i></span>${title}</h5><p>${content}</p>
+<h5><span><i class="far fa-check-circle"></i></span>${title}</h5></div><div><p>${content}</p></div>
 <div class="article-links">
 
 
@@ -74,7 +74,7 @@ formDOM.addEventListener('submit', async (e) => {
   try {
     await axios.post('/api/v1/articles', { title, content })
     showArticles()
-    articleInputDOM.value = ''
+    articleTitleInputDOM.value = ''
     articleContentDOM.value = ''
     formAlertDOM.style.display = 'block'
     formAlertDOM.textContent = `success, article added`

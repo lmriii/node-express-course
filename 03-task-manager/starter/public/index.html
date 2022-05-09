@@ -20,13 +20,20 @@
   <body>
     <form class="article-form">
       <h4>article manager</h4>
+      <div>
       <div class="form-control">
         <input
           type="text"
           name="name"
-          class="article-input"
+          class="article-input-title"
           placeholder="I've been thinking..."
         />
+      </div>
+        <div class="form-control">
+          <!-- <label for="content">Content</label> -->
+          <input type="textarea" name="content" class="article-input-content" placeholder="Great idea goes here" />
+        </div>
+
         <button type="submit" class="btn submit-btn">submit</button>
       </div>
       <div class="form-alert"></div>

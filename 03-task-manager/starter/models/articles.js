@@ -14,7 +14,7 @@ const ArticleSchema = new mongoose.Schema({
     },
     content: {
         type: String,
-        required: [true, 'please provide content'],
+        // required: [true, 'please provide content'],
         trim: true,
 
     }

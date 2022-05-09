@@ -369,7 +369,7 @@ form > :last-child {
   visibility: hidden;
 }
 .article-published h5 {
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
 }
 .article-published .fa-check-circle {
   visibility: visible;
