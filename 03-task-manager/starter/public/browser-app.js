@@ -20,7 +20,7 @@ const showArticles = async () => {
       .map((article) => {
         const { published, _id: articleID, title, content } = article
         return `<div class="single-article ${published && 'article-published'}">
-<h5><span><i class="far fa-check-circle"></i></span>${title}</h5></div><div><p>${content}</p></div>
+<h5><span><i class="far fa-check-circle"></i></span>${title}</h5></div><div><p class="single-article ${published && 'article-published'}">${content}</p></div>
 <div class="article-links">
 
 

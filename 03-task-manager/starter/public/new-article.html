@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="container">
-      <form class="article-form">
+      <form class="single-article-form">
         <h4>Create Article</h4>
         <!-- <div class="form-control">
           <label>Article ID</label>
@@ -23,21 +23,25 @@
         </div> -->
         <div class="form-control">
           <label for="title">Title</label>
-          <input type="text" name="title" class="article-input-title" />
+          <input type="text" name="title" class="article-edit-title" />
         </div>
-        <div class="form-control">
+        <!-- <div class="form-control">
           <label for="published">published</label>
-          <input type="checkbox" name="published" class="article-input" />
-        </div>
+          <input type="checkbox" name="published" class="article-edit-published" />
+        </div> -->
         <div class="form-control">
           <label for="content">Content</label>
-          <input type="textarea" name="content" class="article-input-content" />
+          <input type="textarea" name="content" class="article-edit-content" />
         </div>
         <button type="submit" class="block btn article-edit-btn">Create</button>
         <div class="form-alert"></div>
       </form>
       <a href="index.html" class="btn back-link">back to articles</a>
     </div>
+    <section class="articles-container">
+      <p class="loading-text">Loading...</p>
+      <div class="articles"></div>
+    </section>
     <!-- axios -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"

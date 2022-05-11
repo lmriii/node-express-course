@@ -1,5 +1,5 @@
 const articleIDDOM = document.querySelector('.article-edit-id')
-const articleNameDOM = document.querySelector('.article-edit-name')
+const articleNameDOM = document.querySelector('.article-edit-title')
 const articleContentDOM = document.querySelector('.article-edit-content')
 const articlePublishedDOM = document.querySelector('.article-edit-published')
 const editFormDOM = document.querySelector('.single-article-form')
