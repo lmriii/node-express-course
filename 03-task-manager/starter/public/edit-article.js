@@ -4,22 +4,24 @@ const articleContentDOM = document.querySelector('.article-edit-content')
 const articlePublishedDOM = document.querySelector('.article-edit-published')
 const editFormDOM = document.querySelector('.single-article-form')
 const editBtnDOM = document.querySelector('.article-edit-btn')
-const formAlertDOM = document.querySelector('.form-alert')
+const formEditAlertDOM = document.querySelector('.form-alert')
 const params = window.location.search
 const id = new URLSearchParams(params).get('id')
 let tempName
+let tempContent
 
 const showArticle = async () => {
   try {
     const {
       data: { article },
     } = await axios.get(`/api/v1/articles/${id}`)
-    const { _id: articleID, published, title, content } = article
+    let { _id: articleID, published, title, content } = article
 
     articleIDDOM.textContent = articleID
     articleNameDOM.value = title
     articleContentDOM = content
     tempName = title
+    tempContent = content
     if (published) {
       articlePublishedDOM.checked = true
     }
@@ -52,6 +54,7 @@ editFormDOM.addEventListener('submit', async (e) => {
     articleNameDOM.value = title
     articleContentDOM.value = content
     tempName = title
+    tempContent = content
     if (published) {
       articlePublishedDOM.checked = true
     }
@@ -61,6 +64,7 @@ editFormDOM.addEventListener('submit', async (e) => {
   } catch (error) {
     console.error(error)
     articleNameDOM.value = tempName
+    articleContentDOM.value = tempContent
     formAlertDOM.style.display = 'block'
     formAlertDOM.innerHTML = `error, please try again`
   }
@@ -68,5 +72,5 @@ editFormDOM.addEventListener('submit', async (e) => {
   setTimeout(() => {
     formAlertDOM.style.display = 'none'
     formAlertDOM.classList.remove('text-success')
-  }, 3000)
+  }, 4000)
 })

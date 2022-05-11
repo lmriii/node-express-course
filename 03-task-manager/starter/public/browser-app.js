@@ -75,7 +75,7 @@ formDOM.addEventListener('submit', async (e) => {
     await axios.post('/api/v1/articles', { title, content })
     showArticles()
     articleTitleInputDOM.value = ''
-    articleContentDOM.value = ''
+    articleContentInputDOM.value = ''
     formAlertDOM.style.display = 'block'
     formAlertDOM.textContent = `success, article added`
     formAlertDOM.classList.add('text-success')
@@ -86,5 +86,5 @@ formDOM.addEventListener('submit', async (e) => {
   setTimeout(() => {
     formAlertDOM.style.display = 'none'
     formAlertDOM.classList.remove('text-success')
-  }, 3000)
+  }, 4000)
 })
