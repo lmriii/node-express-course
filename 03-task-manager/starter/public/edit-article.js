@@ -15,7 +15,7 @@ const showArticle = async () => {
     const {
       data: { article },
     } = await axios.get(`/api/v1/articles/${id}`)
-    let { _id: articleID, published, title, content } = article
+    const { _id: articleID, published, title, content } = article
 
     articleIDDOM.textContent = articleID
     articleNameDOM.value = title
