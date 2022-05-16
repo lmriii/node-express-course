@@ -19,7 +19,7 @@ const showArticle = async () => {
 
     articleIDDOM.textContent = articleID
     articleNameDOM.value = title
-    articleContentDOM = content
+    articleContentDOM.value = content
     tempName = title
     tempContent = content
     if (published) {
